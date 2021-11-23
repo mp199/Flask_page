@@ -26,9 +26,9 @@ def home():
 # @app.route('/login', methods=['POST', 'GET'])
 # def login():
 #     if request.method == 'POST':
-#         user = request.form['name']      # uzimamo vrijednost varijable "name" iz login.html-a
-#                                          # request.form dolazi u obliku dictionarija, gdje je ključ naziv varijable iz html-a,
-#                                          # a value je vrijednost koju submitamo na stranici
+#         user = request.form['name']       # uzimamo vrijednost varijable "name" iz login.html-a
+#                                           # request.form dolazi u obliku dictionarija, gdje je ključ naziv varijable iz html-a,
+#                                           # a value je vrijednost koju submitamo na stranici
 #         return redirect(url_for('user', name=user))    # redirectamo na stranicu "user" te kao input uzimamo
 #                                                        # vrijednost koju smo submitali i spremili u varijablu "user"
 #     else:
