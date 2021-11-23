@@ -1,0 +1,25 @@
+{% extends 'base3.html' %}
+
+{% block head %}
+    <title>Update</title>
+{% endblock %}
+
+
+{% block body %}
+    <br>
+    {% if user.email != '' %}
+        <p>You can change your email here {{user.name}}!</p>
+    {% else %}
+        <p>You can enter you email here {{user.name}}!</p>
+    {% endif %}
+
+    <form action="/update/{{user.id}}" method="POST">
+        <input type="text" value="{{user.email}}" name="update" style="width: 250px">
+        <input type="submit" value="Save" style="width: 60px">
+    </form>
+    <br>
+    <form action="/view">
+        <input type="submit" value="Back" style="width: 60px">
+    </form>
+
+{% endblock %}

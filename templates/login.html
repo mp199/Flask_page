@@ -1,0 +1,30 @@
+{% extends 'base3.html' %}
+
+{% block head %}
+
+    <title>Login Page</title>
+
+{% endblock %}
+
+{% block body %}
+
+    {% with messages = get_flashed_messages() %}   <!-- uzimamo messages koje smo definirali u marko.py u logout funkciji (flash) -->
+        {% if  messages %}
+            {% for message in messages %}
+                <p style="font-size: 20px; font-weight: bold">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <br>
+    <form action="" method="POST">   <!-- ostajemo na istoj stranici -->
+        <b>Name:</b>
+        <p><input type="text" name="name"></p>
+        <p><input type="submit" value="Login"></p>
+    </form>
+
+    {% if user == "" %}
+        <p style="color: red">Invalid user name!</p>
+    {% endif %}
+
+{% endblock %}
