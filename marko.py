@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, session, flash
 from flask_sqlalchemy import SQLAlchemy
-
+# neki komentar
 app = Flask(__name__)
 app.secret_key = '123'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
