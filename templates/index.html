@@ -8,14 +8,16 @@
 
 {% block body %}
 
-    <h1>Hello World</h1>
-    <p>{{name}}</p>
-
-    {% for k,v in nums.items() %}
-        {% if k % 2 == 0 %}
-             <p>Hello {{v}}!</p>
-        {% endif %}
-    {% endfor %}
+    {% if user %}
+        <br>
+        <img src="{{url_for('static', filename = 'generic_picture.jpg')}}" width="200">
+        <br>
+        <br>
+        <h1>Hello {{user}}, welcome to the page!</h1>
+    {% else %}
+        <br>
+        <h1>Hello user, please <a href="login" style="color:blue">log in</a> to continue...</h1>
+    {% endif %}
 
 {% endblock %}
 

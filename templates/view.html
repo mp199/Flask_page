@@ -6,37 +6,44 @@
 
 {% block body %}
 
-    <h2>List of all the users:</h2>
-    <br>
-     <table>
-         <tr>
-             <th style="width:30px; text-align:center; background-color:red; color:white">Id</th>
-             <th style="width:70px; text-align:center; background-color:blue; color:white">Name</th>
-             <th style="width:100px; text-align:center; background-color:green; color:white">e-mail</th>
-             <th style="width:70px; text-align:right; background-color:black; color:white">Act</th>
-             <th style="width:70px; text-align:left; background-color:black; color:white">ion</th>
-         </tr>
-         {%  for user in values %}
-         <tr>
-             <td>{{values.index(user) + 1}}</td>   <!-- values.index(user) pronalazi na kojoj se poziciji nalazi pojedini "user" -->
-             <td>{{user.name}}</td>
-             <td>{{user.email}}</td>
-             <td>
-                 <form action="delete/{{user.id}}">
-                    <input type="submit" value="Delete" style="width:70px; height:25px; line-height:10px; margin-left:15px;
-                                                               position:relative; left:-5px">
-                 </form>
-             </td>
-             <td>
-                 <form action="update/{{user.id}}">
-                     <input type="submit" value="Update" style="width:70px; height:25px; margin-left:10px; line-height:0px;
-                                                               position:relative; left:-10px">
-                 </form>
-             </td>
-         </tr>
+    {% if values %}
+        <h2>List of all the users:</h2>
+        <br>
+         <table>
+             <tr>
+                 <th style="width:30px; text-align:center; background-color:red; color:white">Id</th>
+                 <th style="width:70px; text-align:center; background-color:blue; color:white">Name</th>
+                 <th style="width:100px; text-align:center; background-color:green; color:white">e-mail</th>
+                 <th style="width:70px; text-align:right; background-color:black; color:white">Act</th>
+                 <th style="width:70px; text-align:left; background-color:black; color:white">ion</th>
+             </tr>
+             {%  for user in values %}
+             <tr>
+                 <td>{{values.index(user) + 1}}</td>   <!-- values.index(user) pronalazi na kojoj se poziciji nalazi pojedini "user" -->
+                 <td>{{user.name}}</td>
+                 <td>{{user.email}}</td>
+                 <td>
+                     <form action="delete/{{user.id}}">
+                        <input type="submit" value="Delete" style="width:70px; height:25px; line-height:10px; margin-left:15px;
+                                                                   position:relative; left:-5px">
+                     </form>
+                 </td>
+                 <td>
+                     <form action="update/{{user.id}}">
+                         <input type="submit" value="Update" style="width:70px; height:25px; margin-left:10px; line-height:0px;
+                                                                   position:relative; left:-10px">
+                     </form>
+                 </td>
+             </tr>
 
-         {% endfor %}
+             {% endfor %}
 
-     </table>
+         </table>
+
+    {% else %}
+        <br>
+        <h1>Please <a href="login">log in</a> to continue...</h1>
+
+    {% endif %}
 
 {% endblock %}

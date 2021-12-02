@@ -20,21 +20,14 @@ class Users(db.Model):
 
 @app.route('/')
 def home():
-    return render_template('index.html', nums={1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five'})
+    if 'user' in session:
+        user = session['user']
+        return render_template('index.html', user=user)
 
+    else:
+        return render_template('index.html')
 
-# @app.route('/login', methods=['POST', 'GET'])
-# def login():
-#     if request.method == 'POST':
-#         user = request.form['name']       # uzimamo vrijednost varijable "name" iz login.html-a
-#                                           # request.form dolazi u obliku dictionarija, gdje je ključ naziv varijable iz html-a,
-#                                           # a value je vrijednost koju submitamo na stranici
-#         return redirect(url_for('user', name=user))    # redirectamo na stranicu "user" te kao input uzimamo
-#                                                        # vrijednost koju smo submitali i spremili u varijablu "user"
-#     else:
-#         return render_template('login.html')
-#
-## dinamično postavljanje adrese - što god upišemo u address bar, biti će prikazano kao adresa stranice
+# dinamično postavljanje adrese - što god upišemo u address bar, biti će prikazano kao adresa stranice
 # @app.route('/<name>')
 # def user(name):
 #     return f'Hello there <h3>{name}</h3> how are you?'
@@ -43,6 +36,9 @@ def home():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
+        # uzimamo vrijednost varijable "name" iz login.html-a
+        # request.form dolazi u obliku dictionarija, gdje je ključ naziv varijable iz html-a, a value je
+        # vrijednost koju submitamo na stranici
         user = request.form['name']
 
         if user == "":
@@ -113,7 +109,11 @@ def user():
 
 @app.route('/view')
 def view():
-    return render_template('view.html', values=Users.query.all())
+    if 'user' in session:
+        return render_template('view.html', values=Users.query.all())
+
+    else:
+        return render_template('view.html')
 
 
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
@@ -160,6 +160,7 @@ def logout():
     # brišemo podatke o useru koje smo spremili prilikom logiranja
     session.pop('user', None)
     session.pop('email', None)
+
     return redirect(url_for('login'))
 
 
